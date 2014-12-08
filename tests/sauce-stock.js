@@ -2,7 +2,7 @@ var wd = require('wd')
   , assert = require('assert')
   , colors = require('colors');
 
-var config = require('./fil-saucelabs-creds.json');
+var config = require('./neilk-creds.json');
 
 var USER = config.USER;
 var PORT = config.PORT;
@@ -32,7 +32,7 @@ module.exports = function(port, cb) {
 
   /*
   * This test loads up Fil's homepage, checks that the title matches
-  * some standard expectation, clicks on a link labeled "CV" and 
+  * some standard expectation, clicks on a link labeled "CV" and
   * expects that the address bar contains "cv.html".
   */
 
