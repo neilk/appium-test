@@ -2,7 +2,7 @@ var wd = require('wd'),
     assert = require('assert'),
     colors = require('colors');
 
-var config = require('./fil-stew-creds.json');
+var config = require('./neilk-dev-creds.json');
 
 var USER = config.USER;
 var PORT = config.PORT;
@@ -26,15 +26,17 @@ module.exports = function(port, cb) {
   });
 
   browser.init({
-    name:'Contact Manager Native Application Test on S4 Device',
-    device:'Samsung Galaxy S4 Device',
+    name:'Contact Manager Generic Android',
+    deviceName: 'Android Emulator',
     app:'http://saucelabs.com/example_files/ContactManager.apk',
     "app-activity": ".ContactManager",
     "app-package": "com.example.android.contactmanager",
     username:USER,
     accessKey:KEY,
-    platform: 'Linux',
-    version: '4.4'
+    appiumVersion:'1.3.3',
+    'device-orientation': 'portrait',
+    platformName: 'Android',
+    platformVersion: '4.4'
   }, function(err) {
     if (err) console.error('init err!', err);
     else browser.elementByName('Add Contact', function(err, el) {
@@ -55,7 +57,7 @@ module.exports = function(port, cb) {
                     if (err) console.error('get text fields[2]', err);
                     else {
                       assert.equal(text, 'someone@somewhere.com');
-                      browser.quit() 
+                      browser.quit()
                       if (cb) cb();
                     }
                   });
